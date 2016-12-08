@@ -16,7 +16,7 @@ npm install wordpress-debug --save-dev
 ## Usage
 
 ```js
-const wordpressDebug = require('wordpress-debug');
+const wordpressDebug = require('wordpress-debug').default;
 
 wordpressDebug('path/to/wp-config.php'); // Enable debug
 wordpressDebug('path/to/wp-config.php', true); // Enable debug

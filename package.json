@@ -59,15 +59,8 @@
         "node": ">=6"
     },
     "keywords": [
-        "export",
-        "get",
-        "json",
-        "node",
-        "sass",
-        "variables",
-        "vars",
-        "synchronously",
-        "sync"
+        "wordpress",
+        "debug"
     ],
     "repository": {
         "type": "git",

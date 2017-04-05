@@ -6,12 +6,12 @@ import wordpressDebug from '../index';
 
 const fixturesDir = path.join(__dirname, 'fixtures');
 
-test('should throw error if `wpConfigPath` option not passed', (t) => {
-    t.throws(() => wordpressDebug(), 'Require `wpConfigPath` option');
+test('should throw error if `wpConfigPath` option not passed', async (t) => {
+    await t.throws(() => wordpressDebug(), 'Require `wpConfigPath` option');
 });
 
-test('should throw error if `wp-config.php` is empty', (t) => {
-    t.throws(wordpressDebug(path.join(fixturesDir, 'wp-config-empty.php')), 'Empty contents of `wp-config.php`');
+test('should throw error if `wp-config.php` is empty', async (t) => {
+    await t.throws(wordpressDebug(path.join(fixturesDir, 'wp-config-empty.php')), 'Empty contents of `wp-config.php`');
 });
 
 test.serial('should disable debug', async (t) => {

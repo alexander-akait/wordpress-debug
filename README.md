@@ -1,5 +1,7 @@
 # wordpress-debug
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/itgalaxy/wordpress-debug.svg)](https://greenkeeper.io/)
+
 [![NPM version](https://img.shields.io/npm/v/wordpress-debug.svg)](https://www.npmjs.org/package/wordpress-debug) 
 [![Travis Build Status](https://img.shields.io/travis/itgalaxy/wordpress-debug/master.svg?label=build)](https://travis-ci.org/itgalaxy/wordpress-debug) 
 [![dependencies Status](https://david-dm.org/itgalaxy/wordpress-debug/status.svg)](https://david-dm.org/itgalaxy/wordpress-debug) 

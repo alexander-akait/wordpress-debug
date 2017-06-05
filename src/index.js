@@ -8,7 +8,7 @@ export default (wpConfigPath, debug = true) => {
 
     return pify(fs)
         .readFile(wpConfigPath)
-        .then((data) => {
+        .then(data => {
             if (!data || (data && data.length === 0)) {
                 throw new Error('Empty contents of `wp-config.php`');
             }
@@ -25,16 +25,16 @@ export default (wpConfigPath, debug = true) => {
             }
 
             const replaceRegExp = new RegExp(
-                '\\((\\\'|")'
-                    + '(WP_DEBUG|WP_DEBUG_DISPLAY|WP_DEBUG_LOG|SAVEQUERIES|'
-                    + 'SCRIPT_DEBUG|CONCATENATE_SCRIPTS|COMPRESS_SCRIPTS|COMPRESS_CSS)'
-                    + '(\\\'|")(.*?),\\s(.*?)\\)',
+                '\\((\\\'|")' +
+                    '(WP_DEBUG|WP_DEBUG_DISPLAY|WP_DEBUG_LOG|SAVEQUERIES|' +
+                    'SCRIPT_DEBUG|CONCATENATE_SCRIPTS|COMPRESS_SCRIPTS|COMPRESS_CSS)' +
+                    '(\\\'|")(.*?),\\s(.*?)\\)',
                 'gmi'
             );
 
-            return data.toString().replace(
-                replaceRegExp,
-                (text, unused, foundString) => {
+            return data
+                .toString()
+                .replace(replaceRegExp, (text, unused, foundString) => {
                     positive.lastIndex = 0;
                     negative.lastIndex = 0;
 
@@ -45,12 +45,9 @@ export default (wpConfigPath, debug = true) => {
                     }
 
                     return text;
-                }
-            );
+                });
         })
-        .then(
-            (result) => pify(fs)
-                .writeFile(wpConfigPath, result)
-                .then(() => result)
+        .then(result =>
+            pify(fs).writeFile(wpConfigPath, result).then(() => result)
         );
 };

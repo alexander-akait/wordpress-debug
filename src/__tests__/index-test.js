@@ -1,24 +1,24 @@
-import fs from 'fs';
-import path from 'path';
-import pify from 'pify';
-import test from 'ava'; // eslint-disable-line node/no-unpublished-import
-import wordpressDebug from '../index';
+import fs from "fs";
+import path from "path";
+import pify from "pify";
+import test from "ava"; // eslint-disable-line node/no-unpublished-import
+import wordpressDebug from "../index";
 
-const fixturesDir = path.join(__dirname, 'fixtures');
+const fixturesDir = path.join(__dirname, "fixtures");
 
-test('should throw error if `wpConfigPath` option not passed', async t => {
-    await t.throws(() => wordpressDebug(), 'Require `wpConfigPath` option');
+test("should throw error if `wpConfigPath` option not passed", async t => {
+    await t.throws(() => wordpressDebug(), "Require `wpConfigPath` option");
 });
 
-test('should throw error if `wp-config.php` is empty', async t => {
+test("should throw error if `wp-config.php` is empty", async t => {
     await t.throws(
-        wordpressDebug(path.join(fixturesDir, 'wp-config-empty.php')),
-        'Empty contents of `wp-config.php`'
+        wordpressDebug(path.join(fixturesDir, "wp-config-empty.php")),
+        "Empty contents of `wp-config.php`"
     );
 });
 
-test.serial('should disable debug', async t => {
-    const wpConfigPath = path.join(fixturesDir, 'wp-config.php');
+test.serial("should disable debug", async t => {
+    const wpConfigPath = path.join(fixturesDir, "wp-config.php");
 
     await wordpressDebug(wpConfigPath, false);
 
@@ -35,8 +35,8 @@ test.serial('should disable debug', async t => {
     t.regex(contents, /define\('COMPRESS_CSS',\strue\);/);
 });
 
-test.serial('should enable debug', async t => {
-    const wpConfigPath = path.join(fixturesDir, 'wp-config.php');
+test.serial("should enable debug", async t => {
+    const wpConfigPath = path.join(fixturesDir, "wp-config.php");
 
     await wordpressDebug(wpConfigPath, true);
 

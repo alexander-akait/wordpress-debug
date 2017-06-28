@@ -1,16 +1,16 @@
-import fs from 'fs';
-import pify from 'pify';
+import fs from "fs";
+import pify from "pify";
 
 export default (wpConfigPath, debug = true) => {
     if (!wpConfigPath) {
-        throw new Error('Require `wpConfigPath` option');
+        throw new Error("Require `wpConfigPath` option");
     }
 
     return pify(fs)
         .readFile(wpConfigPath)
         .then(data => {
             if (!data || (data && data.length === 0)) {
-                throw new Error('Empty contents of `wp-config.php`');
+                throw new Error("Empty contents of `wp-config.php`");
             }
 
             let positive = null;
@@ -25,11 +25,11 @@ export default (wpConfigPath, debug = true) => {
             }
 
             const replaceRegExp = new RegExp(
-                '\\((\\\'|")' +
-                    '(WP_DEBUG|WP_DEBUG_DISPLAY|WP_DEBUG_LOG|SAVEQUERIES|' +
-                    'SCRIPT_DEBUG|CONCATENATE_SCRIPTS|COMPRESS_SCRIPTS|COMPRESS_CSS)' +
-                    '(\\\'|")(.*?),\\s(.*?)\\)',
-                'gmi'
+                "\\((\\'|\")" +
+                    "(WP_DEBUG|WP_DEBUG_DISPLAY|WP_DEBUG_LOG|SAVEQUERIES|" +
+                    "SCRIPT_DEBUG|CONCATENATE_SCRIPTS|COMPRESS_SCRIPTS|COMPRESS_CSS)" +
+                    "(\\'|\")(.*?),\\s(.*?)\\)",
+                "gmi"
             );
 
             return data
